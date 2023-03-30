@@ -1,0 +1,157 @@
+{
+  "main": {
+    "name":"مؤسسة سوريين ايجابين بالمطلق ",
+    "description":" استطاعت مؤسسة سوريين إيجابيين بالمطلق أن تثبت رسالتها من خلال الحملة الطلابية لإيصال العلم بطريقة أكاديمية تخصصية، بإيمان من المتخصصين في علوم التنمية البشرية بأن التعليم خطوة أساسية في بناء الفرد والمجتمع، وأن تغيير الداخل خطوة لا بدّ منها للنهوض بجيل إيجابي ناجح ومميز.  ",
+    "image":"profilepic.jpg",
+    "bio":" بدأت حملتنا نهاية عام 2017، وفكرة المؤسسة تكمن في التركيز على السعي للنهوض بجيل واعٍ ومثقف يسعى إلى تطوير بلده. فنحن مؤسسة غير ربحية، وهدفنا التأهيل وتنمية قدرات الشباب، فابتكرنا عدة دورات وبرامج تدريبية الهدف منها مساندة الفروع الجامعية الجافة التي تفتقد إلى الجانب العملي، حيث ركزنا على مساندة الطلاب وتأهيلهم لدخول سوق العمل، وفي نهاية عام 2022 استطعنا أن نصل إلى آلاف طالب , المدير العام للمؤسسة الأستاذ عامر عثمان. ",
+    "contactmessage":"Here is where you should write your message to readers to have them get in contact with you.",
+    "email": "Syriaspa@gmail.com",
+    "phone": "011-4803",
+    "facebook":"https://github.com/nordicgiant2/react-nice-resume",
+
+    "address":{
+      
+      "street":"دمشق",
+      "city":"الحلبوني",
+      "state":"شارع خالد بن الوليد"
+      
+    },
+    "website": "http://www.timbakerdev.com",
+    "resumedownload":"https://www.facebook.com/AbsolutelyPositiveSyrian",
+    "social":[
+      {
+        "name":"facebook",
+        "url":"https://www.facebook.com/AbsolutelyPositiveSyrian",
+        "className":"fa fa-facebook"
+      },
+     
+      {
+        "name":"instagram",
+        "url":"http://instagram.com/tbaker_x",
+        "className":"fa fa-instagram"
+      }
+     
+    ]
+  },
+  "resume":{
+    "skillmessage":"Here you can create a short write-up of your skills to show off to employers",
+    "education":[
+      {
+        "school":"University?",
+        "degree":"Masters in Beer tasting",
+        "graduated":"April 2017",
+        "description":"Describe your experience at school, what you learned, what useful skills you have acquired etc."
+      },
+      {
+        "school":"School #1 Maybe College?",
+        "degree":"What did you study 101",
+        "graduated":"March 2013",
+        "description":"Describe your experience at school, what you learned, what useful skills you have acquired etc."
+      }
+    ],
+    "work":[
+      {
+        "company":"Awesome Design Studio",
+        "title":"Senior UX God ",
+        "years":"March 2018 - Present",
+        "description":"Describe work, special projects, notable achievements, what technologies you have been working with, and anything else that would be useful for an employer to know."
+      },
+      {
+        "company":"Super Cool Studio",
+        "title":"Junior bug fixer",
+        "years":"March 2017 - February 2018",
+        "description":"Describe work, special projects, notable achievements, what technologies you have been working with, and anything else that would be useful for an employer to know."
+      }
+    ],
+    "skills":[
+      {
+        "name":"Python",
+        "level":"60%"
+      },
+      {
+        "name":"VueJs",
+        "level":"55%"
+      },
+      {
+        "name":"ReactJs",
+        "level":"50%"
+      },
+      {
+        "name":"CSS",
+        "level":"90%"
+      },
+      {
+        "name":"PHP",
+        "level":"80%"
+      },
+      {
+        "name":"Swift",
+        "level":"50%"
+      },
+      {
+        "name":"JAVA",
+        "level":"80%"
+      }
+    ]
+  },
+  "portfolio":{
+    "projects": [
+      {
+        "title":"ادارة الأعمال",
+        "category":"My Travel Blog for my post-university travels",
+        "image":"01.jpg",
+        "url":"https://www.canadianwanderlust.com"
+      },
+      {
+        "title":"برنامج الأمين للمحاسبة والمستودعات",
+        "category":"(offline now) A fighting gear company I started",
+        "image":"02.jpg",
+        "url":"http://www.timbakerdev.com"
+      },
+      {
+        "title":"قيادة الحاسب ICDL",
+        "category":"Website I built for a restaurant I like in Thailand",
+        "image":"03.jpg",
+        "url":"http://www.timbakerdev.com/originalthaifood.github.io"
+      },
+      {
+        "title":"مهارات التعليق الصوتي",
+        "category":"A React based resume website template",
+        "image":"04.jpg",
+        "url":"http://www.timbakerdev.com"
+      },
+      {
+        "title":"اللغة الانكليزية",
+        "category":"(MVP Only) A React and Meteor based chat University project.",
+        "image":"05.jpg",
+        "url":"http://www.smirkspace.com"
+      },
+      {
+        "title":"اللغة الالمانية ",
+        "category":"My Travel Blog for my post-university travels",
+        "image":"06.jpg",
+        "url":"https://www.canadianwanderlust.com"
+      },
+      {
+        "title":"المنتسوري",
+        "category":"Website I built for a restaurant I like in Thailand",
+        "image":"07.jpg",
+        "url":"http://www.timbakerdev.com/originalthaifood.github.io"
+      },
+      {
+        "title":"الحلاقة الرجالية ",
+        "category":"(offline now) A fighting gear company I started",
+        "image":"08.jpg",
+        "url":"http://www.timbakerdev.com"
+      },
+   
+      {
+        "title":"دبلوم فن التصوير الفوتوغرافي",
+        "category":"Website I built for a restaurant I like in Thailand",
+        "image":"09.jpg",
+        "url":"http://www.timbakerdev.com/originalthaifood.github.io"
+      }
+ 
+    ]
+  }
+}
