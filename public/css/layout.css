@@ -876,7 +876,7 @@ call-to-action .button {
 	background: #fff;
 }
 #contact span.required {
-	color: #0762f9;
+	color: white;
 	font-size: 13px;
 }
 #message-warning, #message-success {
@@ -888,7 +888,7 @@ call-to-action .button {
    margin-left: 26%;
 }
 #message-warning { color: #D72828; }
-#message-success { color: #0762f9; }
+#message-success { color: green; }
 
 #message-warning i,
 #message-success i {
@@ -928,13 +928,13 @@ call-to-action .button {
 footer {
    padding-top: 48px;
    margin-bottom: 48px;
-   color: #303030;
+   color: #0D0D0D;
    font-size: 14px;
    text-align: center;
    position: relative;
 }
 
-footer a, footer a:visited { color: #525252; }
+footer a, footer a:visited { color: #0D0D0D; }
 footer a:hover, footer a:focus { color: #fff; }
 
 /* copyright */
@@ -955,7 +955,7 @@ footer .copyright li:before {
     content: "\2022";
     padding-left: 10px;
     padding-right: 10px;
-    color: #095153;
+    color:#0D0D0D;
 }
 footer .copyright  li:first-child:before {
     display: none;
