@@ -43,11 +43,19 @@ class Header extends Component {
               Questionnaires
               </a>
             </li>
+<<<<<<< Updated upstream
            
 
           
 
           
+=======
+            <li>
+              <a className="smoothscroll" href="#generale">
+                Generale
+              </a>
+            </li>
+>>>>>>> Stashed changes
           </ul>
         </nav>
 
