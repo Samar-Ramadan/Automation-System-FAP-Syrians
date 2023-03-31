@@ -38,6 +38,7 @@ import About from "./Components/HomePages/About";
 import Resume from "./Components/HomePages/Resume";
 import Contact from "./Components/HomePages/Contact";
 import Portfolio from "./Components/HomePages/Portfolio";
+import GeneralManger from "./Components/Pages/General_Manger/index";
 
 class App extends Component {
   constructor(props) {
@@ -77,10 +78,6 @@ class App extends Component {
         <About data={this.state.resumeData.main} />
         <Portfolio data={this.state.resumeData.portfolio} />
         <Contact data={this.state.resumeData.main} />
-        
-       
-
-       
         <Footer data={this.state.resumeData.main} />
       </div>
     );
