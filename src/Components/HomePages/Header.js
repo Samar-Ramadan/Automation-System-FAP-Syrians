@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ParticlesBg from "particles-bg";
+import { Link ,NavLink } from "react-router-dom";
 //import Fade from "react-reveal";
 
 class Header extends Component {
@@ -43,19 +44,9 @@ class Header extends Component {
               Questionnaires
               </a>
             </li>
-<<<<<<< Updated upstream
-           
-
-          
-
-          
-=======
-            <li>
-              <a className="smoothscroll" href="#generale">
-                Generale
-              </a>
-            </li>
->>>>>>> Stashed changes
+              
+            <li><NavLink className="nav" to="/GeneralManger">Generale</NavLink></li>
+             
           </ul>
         </nav>
 
