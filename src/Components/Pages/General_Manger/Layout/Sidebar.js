@@ -8,7 +8,7 @@ import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
  
 const Nav = styled.div`
-  background: #15171c;
+  background: #54B4D3;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -25,7 +25,7 @@ const NavIcon = styled(Link)`
 `;
  
 const SidebarNav = styled.nav`
-  background: #15171c;
+  background:gray;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -55,13 +55,13 @@ const Sidebar = () => {
           </NavIcon>
           <h1
             style={{ textAlign: "center",
-                     marginLeft: "600px",
-                     color: "green" }}
+                     marginLeft: "900px",
+                     color: "white" }}
           >
             الإدارة
           </h1>
         </Nav>
-        <SidebarNav sidebar={sidebar}>
+        <SidebarNav sidebar={sidebar} >
           <SidebarWrap>
             <NavIcon to="#">
               <AiIcons.AiOutlineClose onClick={showSidebar} />

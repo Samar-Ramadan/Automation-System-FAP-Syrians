@@ -112,15 +112,15 @@ loadUserData(0,4,0);
 const renderpagination=()=>{
   if(currentpage===0){
     return(
-<MDBPagination className='mb-0'>
-  <MDBPaginationItem>
-    <MDBPaginationLink>
+<MDBPagination className='mb-0' style={{backgroundColor:"white"}}>
+  <MDBPaginationItem  style={{backgroundColor:"white"}}>
+    <MDBPaginationLink  style={{backgroundColor:"white"}}>
       1
     </MDBPaginationLink>
    
 
     </MDBPaginationItem>
-<MDBPaginationItem>
+<MDBPaginationItem >
 <MDBBtn onClick={()=>loadUserData(4,8,1,opration,sortfiltervalue)}>Next</MDBBtn>
   </MDBPaginationItem>
 
@@ -130,7 +130,7 @@ const renderpagination=()=>{
   }
   else if(currentpage < limitpage-1 && data.length===limitpage){
     return(
-      <MDBPagination className='mb-0'>
+      <MDBPagination className='mb-0' style={{backgroundColor:"white"}}>
         <MDBPaginationItem>
         <MDBBtn onClick={()=>loadUserData((currentpage-1)*4,currentpage*4,-1,opration,sortfiltervalue)}>prev
         </MDBBtn>
@@ -138,7 +138,7 @@ const renderpagination=()=>{
   <MDBPaginationItem>
 
 <MDBPaginationItem>
-<MDBPaginationLink>
+<MDBPaginationLink style={{backgroundColor:"white"}}>
     {currentpage+1}  
     </MDBPaginationLink>
 </MDBPaginationItem>
@@ -157,13 +157,13 @@ const renderpagination=()=>{
 
   }else{
     return(
-      <MDBPagination className='mb-0'>
+      <MDBPagination className='mb-0' style={{backgroundColor:"white"}}>
 
 <MDBPaginationItem>
 <MDBBtn onClick={()=>loadUserData((currentpage-1)*4,currentpage*4,-1,opration,sortfiltervalue)}>prev</MDBBtn>
   </MDBPaginationItem>
   <MDBPaginationItem>
-    <MDBPaginationLink>
+    <MDBPaginationLink style={{backgroundColor:"white"}}>
       {currentpage+1}
     </MDBPaginationLink>
    
@@ -194,11 +194,11 @@ const renderpagination=()=>{
 
            
            {/* <MDBBtnGroup> */}
-          <MDBBtn type='submit' style={{marginTop:15}} color='dark'>
+          <MDBBtn type='submit' style={{marginBottom:25}}  color='dark'>
             search
 
           </MDBBtn>
-          <MDBBtn className='mx-2' color='info' style={{marginTop:15}} onClick={()=>handelreset()}>
+          <MDBBtn className='mx-2' color='info' style={{marginBottom:25}} onClick={()=>handelreset()}>
             reset
 
           </MDBBtn>
@@ -259,7 +259,7 @@ const renderpagination=()=>{
           </MDBRow>
 <div style={{
           marginTop:"15px",
-          marginLeft:"200px",
+          marginLeft:"250px",
           padding:"15px",
           maxWidth:"500px",
           alignContent:"center",}} > {renderpagination()} 
@@ -269,12 +269,12 @@ const renderpagination=()=>{
           <MDBRow>
           <MDBCol size="8">
             <h5>Sort By:</h5>
-            <select style={{width:"50%",borderRadius:"2px",height:"35px"}} onChange={handelsort}
+            <select style={{width:"25%",borderRadius:"3px",height:"30px",backgroundColor:"#54B4D3"}}  onChange={handelsort}
             value={sortvalue}>
-              <option>please select value</option>
+              <option   >please select value</option>
               {SortOptions.map((item,index)=>(
               
-              <option value={item} key={index}>{item}</option>
+              <option  style={{backgroundColor:"white"}} value={item} key={index}>{item}</option>
 
               ))}
 
@@ -286,7 +286,7 @@ const renderpagination=()=>{
               filter By Status:
             </h5>
             <MDBBtnGroup>
-            <MDBBtn color='success' onClick={()=>handelfilter("active")}>
+            <MDBBtn color='success' onClick={()=>handelfilter("active")} style={{margin:"2px"}}>
              Active
             </MDBBtn > 
             <MDBBtn color='danger' onClick={()=>handelfilter("Inactive")} style={{margin:"2px"}}>
