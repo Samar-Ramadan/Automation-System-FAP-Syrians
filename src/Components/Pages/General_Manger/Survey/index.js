@@ -41,14 +41,15 @@ case "Search":
     .catch((err)=>console.log(err));
     case "filter":
       setopration(optType);
-      setsortfiltervalue(filterorsortvalue);
-      return await axios.get(`http://localhost:5000/users?_status=${filterorsortvalue}&_order=asc&_start=${start}&_end=${end}}`).then(response=>{
-          setdata(response.data);
-          setCurrentpage(currentpage+increas)
-       
-        
-        })
-        .catch((err)=>console.log(err));
+  setsortfiltervalue(filterorsortvalue);
+  return await axios.get(`http://localhost:5000/users?status=${filterorsortvalue}&_order=asc&_start=${start}&_end=${end}}`).then(response=>{
+      setdata(response.data);
+      setCurrentpage(currentpage+increas)
+   
+    
+    })
+    .catch((err)=>console.log(err));
+      
     default:
 
     return await axios.get(`http://localhost:5000/users?_start=${start}&_end=${end}`).then(response=>{
@@ -79,7 +80,7 @@ loadUserData(0,4,0);
     loadUserData(0,4,0,"Search")
     
     
-  }
+  };
 
 
 
@@ -94,12 +95,12 @@ loadUserData(0,4,0);
     
     // })
     // .catch((err)=>console.log(err));
-  }
+  };
 
 
   const handelfilter=async(value)=>{
 
-  loadUserData(0,4,0,"filter",value)
+  loadUserData(0,4,0,"filter",value);
     
     // return await axios.get(`http://localhost:5000/users?status=${value}`).then(response=>{
     //   setdata(response.data);
@@ -107,7 +108,7 @@ loadUserData(0,4,0);
     
     // })
     // .catch((err)=>console.log(err));
-  }
+  };
 const renderpagination=()=>{
   if(currentpage===0){
     return(
