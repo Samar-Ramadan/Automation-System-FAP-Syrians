@@ -55,7 +55,7 @@ const Sidebar = () => {
           </NavIcon>
           <h1
             style={{ textAlign: "center",
-                     marginLeft: "900px",
+                     marginLeft: "1500px",
                      color: "white" }}
           >
             الإدارة
