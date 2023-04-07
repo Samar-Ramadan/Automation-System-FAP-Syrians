@@ -1,7 +1,9 @@
 import "../Css/General_Manager.css";
 import Sidebar from "./Layout/Sidebar";
 import { BrowserRouter , Routes, Route } from "react-router-dom";
-import { AboutUs, OurAim, OurVision } from "./Codes/Branches/index";
+import {Getbranches} from "./Codes/Branches/index";
+import {GetClassRoom} from "./Codes/ClassRooms/index";
+//import {Add} from "./Codes/Branches/add";
 // import {
 //   Services,
 //   ServicesOne,
@@ -15,9 +17,14 @@ function index() {
     <BrowserRouter>
       <Sidebar />
       <Routes>
-        <Route path='/about-us' element={<AboutUs/>} />
-        <Route path='/about-us/aim' element={<OurAim/>} />
-        <Route path='/about-us/vision' element={<OurVision/>} />
+   
+        
+        <Route path='/Branches/index' element={<Getbranches/>} />
+        <Route path='/ClassRoom/index' element={<GetClassRoom/>} /> 
+        
+        {/* <Route path='/Branches/ubdate' element={<Ubdate/>} /> */}
+        {/* <Route path='/about-us/aim' element={<OurAim/>} />
+        <Route path='/about-us/vision' element={<OurVision/>} /> */}
         {/* <Route path='/services' element={<Services/>} />
         <Route path='/services/services1' element={<ServicesOne/>} />
         <Route path='/services/services2' element={<ServicesTwo/>} />

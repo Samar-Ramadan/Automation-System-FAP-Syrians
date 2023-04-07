@@ -8,20 +8,20 @@ import {MDBTable,MDBTableBody,MDBTableHead,
 
   import { useNavigate } from 'react-router-dom'
 
-  const endpoint = 'http://localhost:8000/api/branch/store'
+  //const endpoint = 'http://localhost:8000/api/branch/store'
 
-export const Getbranches = () => {
+export const GetClassRoom = () => {
 
 
 const [ data,setdata ] = useState([])
-const [name ,setName] = useState("");
+const [size ,setSize] = useState("");
 
 
 useEffect(()=>{
-  Getbranches()
+  GetClassRoom()
 },[])
-const Getbranches = async ()=>{
-   return await axios.get('http://localhost:8000/api/branch/index').then((res)=>{
+const GetClassRoom = async ()=>{
+   return await axios.get('http://localhost:8000/api/class/index').then((res)=>{
     setdata(res.data.data);
    
    
@@ -31,15 +31,15 @@ const Getbranches = async ()=>{
 }
 const store = async (e) => {
   e.preventDefault()
- await axios.post('http://localhost:8000/api/branch/store',{name:name})
+ await axios.post('http://localhost:8000/api/class/store',{size:size})
  //navigate('/')
 }
 const Delete= async (id) =>{
   
-   return await axios.post(`http://localhost:8000/api/branch/destroy/${id}`).then((res)=>{
+   return await axios.post(`http://localhost:8000/api/class/destroy/${id}`).then((res)=>{
       alert(res.data.message);
    })
-  Getbranches()
+  GetClassRoom()
 }
 
  return (
@@ -58,8 +58,8 @@ const Delete= async (id) =>{
     className='d-flex input-group w-auto' onSubmit={store}>
 
       <input type='text' className='form-control' placeholder='ادخل فرع'
-       Value={name} 
-       onChange={(e)=>setName(e.target.value)}
+       Value={size} 
+       onChange={(e)=>setSize(e.target.value)}
        />
 
        
@@ -88,14 +88,14 @@ const Delete= async (id) =>{
 
 
 <div style={{marginTop:"100px"}}>
-          <h2>جميع الفروع</h2>
+          <h2>جميع القاعات</h2>
           <MDBRow>
             <MDBCol size="12">
               <MDBTable>
                 <MDBTableHead dark>
                   <tr>
                   
-                    <th scope='col'>Name</th>
+                    <th scope='col'>Size</th>
                     <th scope='col'>Action</th>
                    
                   </tr>
@@ -119,7 +119,7 @@ const Delete= async (id) =>{
                         <tr>
                           
 
-                          <td>{data.name}</td>
+                          <td>{data.size}</td>
                           <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td>
                    <td></td>
                         </tr>

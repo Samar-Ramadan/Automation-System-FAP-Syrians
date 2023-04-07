@@ -3,7 +3,9 @@ import axios from 'axios';
 import { async } from 'q';
 //import GetService from '../../GetService';
 import React  , {useState ,useEffect}from 'react';
-import {MDBTable,MDBTableBody,MDBTableHead,MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
+import {MDBTable,MDBTableBody,MDBTableHead,
+  MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,
+  MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
 import { directive } from '@babel/types';
 function Survey () {
   //const {loadUserData} = GetService();
@@ -25,7 +27,7 @@ function Survey () {
 case "Search":
   setopration(optType);
   setsortvalue("");
-  return await axios.get(`http://localhost:5000/users?q=${value}&_s tart=${start}&_end=${end}`).then(response=>{
+  return await axios.get(`http://localhost:5000/users?q=${value}&_start=${start}&_end=${end}`).then(response=>{
       setdata(response.data);
       setCurrentpage(currentpage+increas)
      

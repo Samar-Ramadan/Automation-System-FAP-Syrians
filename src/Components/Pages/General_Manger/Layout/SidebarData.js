@@ -16,12 +16,12 @@ export const SidebarData = [
     subNav: [
       {
         title: "الفروع",
-        path: "/about-us/aim",
+        path: "/Branches/index",
         icon: <IoIcons.IoIosPaper />,
       },
       {
         title: "القاعات",
-        path: "/about-us/vision",
+        path: "/ClassRoom/index",
         icon: <IoIcons.IoIosPaper />,
       },
     ],
