@@ -34,6 +34,7 @@ function App(){
     return <ScientificAffairs />
   }
   else if(getUser().roll_number===2){
+    debugger
     return <BranchManger />
   }
   return (

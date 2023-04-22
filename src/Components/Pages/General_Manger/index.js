@@ -4,6 +4,7 @@ import { BrowserRouter , Routes, Route } from "react-router-dom";
 import {Getbranches} from "./Codes/Branches/index";
 import {GetClassRoom} from "./Codes/ClassRooms/index";
 import GetRecordEmployee from "./ControlPanel/RecordEmployee/index";
+import AddClass from "./Codes/ClassRooms/add";
 import { Events, EventsOne, EventsTwo } from "./Reports/Popular_Branches/index";
 import Survey from "./Survey/index";
 function index() {
@@ -14,6 +15,7 @@ function index() {
    
         
         <Route path='/ClassRoom/index' element={<GetClassRoom/>} /> 
+        <Route path="/ClassRoom/create" element={<AddClass/>}/>
         <Route path='/Survey' element={<Survey/>} />
         <Route path='/ControlPanel/RecordEmployee' element={<GetRecordEmployee/>} />
         <Route path='/events/events2' element={<EventsTwo/>} />
