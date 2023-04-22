@@ -3,6 +3,7 @@ import Sidebar from "./Layout/Sidebar";
 import { BrowserRouter , Routes, Route } from "react-router-dom";
 import {Getbranches} from "./Codes/Branches/index";
 import {GetClassRoom} from "./Codes/ClassRooms/index";
+import AddClass from "./Codes/ClassRooms/add";
 import { Events, EventsOne, EventsTwo } from "./Reports/Popular_Branches/index";
 import Survey from "./Survey/index";
 function index() {
@@ -14,6 +15,7 @@ function index() {
         
         <Route path='/Branches/index' element={<Getbranches/>} />
         <Route path='/ClassRoom/index' element={<GetClassRoom/>} /> 
+        <Route path="/ClassRoom/create" element={<AddClass/>}/>
         <Route path='/Survey' element={<Survey/>} />
         <Route path='/events' element={<Events/>} />
         <Route path='/events/events1' element={<EventsOne/>} />

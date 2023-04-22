@@ -6,14 +6,20 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
- 
-const Nav = styled.div`
-  background: #54B4D3;
-  height: 80px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
+import { useNavigate } from 'react-router-dom';
+
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+
+// const Nav = styled.div`
+//   background: #54B4;
+//   height: 80px;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: center;
+// `;
  
 const NavIcon = styled(Link)`
   margin-left: 2rem;
@@ -40,27 +46,36 @@ const SidebarNav = styled.nav`
 const SidebarWrap = styled.div`
   width: 100%;
 `;
- 
+
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
- 
+  const navigate = useNavigate();
   const showSidebar = () => setSidebar(!sidebar);
- 
+  const logout = () => {
+    localStorage.clear();
+    navigate('/login');
+}
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
-        <Nav>
-          <NavIcon to="#">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </NavIcon>
-          <h1
-            style={{ textAlign: "center",
-                     marginLeft: "1500px",
-                     color: "white" }}
-          >
-            الإدارة
-          </h1>
-        </Nav>
+        
+    
+<Navbar expand="lg" bg="primary" variant="dark">
+              <FaIcons.FaBars onClick={showSidebar} />
+        <Container>
+          <Navbar.Brand href="#home" >Home</Navbar.Brand>
+          <Nav  className="me-auto my-2 my-lg-0"
+            style= {{ maxHeight: '200px' }}
+            navbarScroll>
+            <Nav.Link onClick={logout}>
+              <h3>logout</h3>
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+   
+
+
         <SidebarNav sidebar={sidebar} >
           <SidebarWrap>
             <NavIcon to="#">
@@ -75,5 +90,8 @@ const Sidebar = () => {
     </>
   );
 };
- 
+
+
 export default Sidebar;
+
+

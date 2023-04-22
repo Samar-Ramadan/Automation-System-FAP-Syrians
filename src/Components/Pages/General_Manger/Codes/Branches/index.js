@@ -14,6 +14,8 @@ export const Getbranches = () => {
 
 
 const [ data,setdata ] = useState([])
+const [No ,setNo] = useState("");
+
 const [name ,setName] = useState("");
 
 
@@ -31,7 +33,7 @@ const Getbranches = async ()=>{
 }
 const store = async (e) => {
   e.preventDefault()
- await axios.post('http://localhost:8000/api/branch/store',{name:name})
+ await axios.post('http://localhost:8000/api/branch/store',{No:No,name:name})
  //navigate('/')
 }
 const Delete= async (id) =>{
@@ -56,8 +58,12 @@ const Delete= async (id) =>{
 
     }}
     className='d-flex input-group w-auto' onSubmit={store}>
+  <input type='number' className='form-control' placeholder='ادخل رقم الفرع'
+       Value={No} 
+       onChange={(e)=>setNo(e.target.value)}
+       />
 
-      <input type='text' className='form-control' placeholder='ادخل فرع'
+      <input type='text' className='form-control' placeholder='ادخل اسم الفرع'
        Value={name} 
        onChange={(e)=>setName(e.target.value)}
        />
@@ -94,7 +100,7 @@ const Delete= async (id) =>{
               <MDBTable>
                 <MDBTableHead dark>
                   <tr>
-                  
+                  <th scope='col'>No</th>
                     <th scope='col'>Name</th>
                     <th scope='col'>Action</th>
                    
@@ -118,10 +124,18 @@ const Delete= async (id) =>{
                       <MDBTableBody >
                         <tr>
                           
-
+                        <td>{data.No}</td>
                           <td>{data.name}</td>
                           <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td>
-                   <td></td>
+                          {/* <td><Link to={`/UpdateBranches/${No.id,name.id}`} className='btn btn-warning mt-4'>Edit</Link>
+                       
+                          
+                          </td> */}
+                   <td>
+                    
+  
+  
+                   </td>
                         </tr>
     
                       </MDBTableBody>

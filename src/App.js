@@ -27,6 +27,7 @@ function App(){
     return <Content />
   }
   else if(getUser().roll_number===2){
+    debugger
     return <BranchManger />
   }
   return (
