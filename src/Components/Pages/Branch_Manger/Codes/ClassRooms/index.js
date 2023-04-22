@@ -5,43 +5,63 @@ import {MDBTable,MDBTableBody,MDBTableHead,
   MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,
   MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
 
-
+import AuthUser from "../../../../Auth_User/AuthUser";
   import { useNavigate } from 'react-router-dom'
 
   //const endpoint = 'http://localhost:8000/api/branch/store'
 
 export const GetClassRoom = () => {
 
-
-const [ data,setdata ] = useState([])
+  const {http} = AuthUser();
+const [ data,setClassRooms ] = useState([])
 const [size ,setSize] = useState("");
 
 
 useEffect(()=>{
-  GetClassRoom()
+  GetClassRooms()
 },[])
-const GetClassRoom = async ()=>{
-   return await axios.get('http://localhost:8000/api/class/index').then((res)=>{
-    setdata(res.data.data);
+const GetClassRooms = async ()=>{
+  debugger
+   http.get('class/index').then((res1)=>{
+    setClassRooms (res1.data.data);
+    console.log(res1.data);
    
    
+ }).catch((err)=>{
+  console.log(err);
  });
  
  //console.log(response.data.data)
 }
 const store = async (e) => {
   e.preventDefault()
- await axios.post('http://localhost:8000/api/class/store',{size:size})
+  http.post('class/store',{size:size});
+  GetClassRooms();
  //navigate('/')
 }
 const Delete= async (id) =>{
   
-   return await axios.post(`http://localhost:8000/api/class/destroy/${id}`).then((res)=>{
+  http.post(`class/destroy/${id}`).then((res)=>{
       alert(res.data.message);
    })
-  GetClassRoom()
+   GetClassRooms()
 }
 
+const [selectedOption, setSelectedOption] = useState('');
+const handleSelect = (event) => {
+  setSelectedOption(event.target.value);
+};
+
+const [ options,setdata ] = useState([])
+useEffect(()=>{
+  Getbranches()
+},[])
+const Getbranches = async ()=>{
+  http.get('branch/index').then((res)=>{
+   setdata(res.data.data);
+  
+  
+});
  return (
 
 
@@ -57,11 +77,20 @@ const Delete= async (id) =>{
     }}
     className='d-flex input-group w-auto' onSubmit={store}>
 
-      <input type='text' className='form-control' placeholder='ادخل فرع'
+      <input type='text' className='form-control' placeholder='ادخل اسم القاعة'
        Value={size} 
        onChange={(e)=>setSize(e.target.value)}
        />
 
+<label htmlFor="select">Select an option:</label>
+      <select id="select" value={selectedOption} onChange={handleSelect}>
+        <option value="">--Please choose an option--</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
        
        {/* <MDBBtnGroup> */}
       <MDBBtn type='submit' style={{marginBottom:25}}  color='info'>
@@ -148,3 +177,4 @@ const Delete= async (id) =>{
  )
 }
 
+}
