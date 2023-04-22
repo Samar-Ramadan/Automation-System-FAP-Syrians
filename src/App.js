@@ -8,6 +8,7 @@ import Content from "./Components/Pages/Content";
 import AuthUser from './Components/Auth_User/AuthUser';
 //import {OurVision} from './Components/Pages/General_Manger/Codes/Branches/index'
 import BranchManger from "./Components/Pages/Branch_Manger/index";
+import ScientificAffairs from "./Components/Pages/Scientific_Affairs/index"
 
 
 // class App extends Component {
@@ -25,6 +26,12 @@ function App(){
   const {getToken,getUser} = AuthUser();
   if(!getToken()){
     return <Content />
+  }
+  else if(getUser().roll_number===0){
+    return <GeneralManger />
+  }
+  else if(getUser().roll_number===1){
+    return <ScientificAffairs />
   }
   else if(getUser().roll_number===2){
     return <BranchManger />

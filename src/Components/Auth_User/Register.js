@@ -35,34 +35,34 @@ export default function Register() {
             <div className="col-sm-6">
                 <div className="card p-4">
                     <h1 className="text-center mb-3">Register </h1>
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                         <label>roll_number:</label>
-                        <input type="test" className="form-control" placeholder="Enter roll_number"
+                        <input type="number" className="form-control" placeholder="Enter roll_number"
                             onChange={e=>setRoll(e.target.value)}
                         id="roll_number" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                         <label>first_name:</label>
-                        <input type="test" className="form-control" placeholder="Enter first_name"
+                        <input type="text" className="form-control" placeholder="Enter first_name"
                             onChange={e=>setFirstName(e.target.value)}
                         id="first_name" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                         <label>last_name:</label>
-                        <input type="test" className="form-control" placeholder="Enter last_name"
+                        <input type="text" className="form-control" placeholder="Enter last_name"
                             onChange={e=>setLastName(e.target.value)}
                         id="last_name" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                         <label>last_name:</label>
                         <input type="date" className="form-control" placeholder="Enter birth_day"
                             onChange={e=>setBirthDay(e.target.value)}
                         id="birth_day" />
                     </div>
                     
-                    <div className="form-group">
-                        <label>last_name:</label>
-                        <input type="test" className="form-control" placeholder="Enter phone_number"
+                    <div className="form-group mt-3">
+                        <label>Number:</label>
+                        <input type="number" className="form-control" placeholder="Enter phone_number"
                             onChange={e=>setPhone(e.target.value)}
                         id="phone_number" />
                     </div>

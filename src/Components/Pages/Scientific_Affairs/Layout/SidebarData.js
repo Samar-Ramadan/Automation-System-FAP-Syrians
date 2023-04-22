@@ -8,56 +8,39 @@ export const SidebarData = [
   {
     title: "الترميزات",
     
-    path: "/about-us",
     icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
  
     subNav: [
-      {
-        title: "الفروع",
-        path: "/Branches/index",
-        icon: <IoIcons.IoIosPaper />,
-      },
+      
       {
         title: "القاعات",
         path: "/ClassRoom/index",
         icon: <IoIcons.IoIosPaper />,
       },
+      // {
+      //   title: "القاعات",
+      //   path: "/Trainer_Management/index",
+      //   icon: <IoIcons.IoIosPaper />,
+      // },
     ],
   },
   {
-    title: "التقارير",
-    path: "/services",
-    icon: <IoIcons.IoIosPaper />,
+    title: "ادارة المحتوى",
+    
+    icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
  
     subNav: [
+      
       {
-        title: "حول الفروع",
-        path: "/services/services1",
-        icon: <IoIcons.IoIosPaper />,
-        cName: "sub-nav",
-      },
-      {
-        title: "حول الدورات",
-        path: "/services/services2",
-        icon: <IoIcons.IoIosPaper />,
-        cName: "sub-nav",
-      },
-      {
-        title: "حول تقييمات المدربين",
-        path: "/services/services3",
+        title: "المواد",
+        path: "/Management_Content/index",
         icon: <IoIcons.IoIosPaper />,
       },
     ],
-  },
-  {
-    title: "الأستطلاع",
-    path: "/Survey",
-    icon: <FaIcons.FaPhone />,
-    
   },
   {
     title: "لوحة التحكم",
@@ -78,10 +61,5 @@ export const SidebarData = [
         icon: <IoIcons.IoIosPaper />,
       },
     ],
-  },
-  {
-    title: "Support",
-    path: "/support",
-    icon: <IoIcons.IoMdHelpCircle />,
   },
 ];
