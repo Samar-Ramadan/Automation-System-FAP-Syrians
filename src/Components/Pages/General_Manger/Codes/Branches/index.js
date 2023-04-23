@@ -1,21 +1,18 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import {MDBTable,MDBTableBody,MDBTableHead,
   MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,
   MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
+  import { Routes, Route, Link } from 'react-router-dom'
 
-
-  import { useNavigate } from 'react-router-dom'
-
-  const endpoint = 'http://localhost:8000/api/branch/store'
+  import ReactModal from 'react-modal';
+  import * as AiIcons from "react-icons/ai";
 
 export const Getbranches = () => {
 
 
-const [ data,setdata ] = useState([])
+const [data,setdata] = useState([])
 const [No ,setNo] = useState("");
-
 const [name ,setName] = useState("");
 
 
@@ -29,80 +26,112 @@ const Getbranches = async ()=>{
    
  });
  
- //console.log(response.data.data)
 }
 const store = async (e) => {
+  debugger
   e.preventDefault()
- await axios.post('http://localhost:8000/api/branch/store',{No:No,name:name})
- //navigate('/')
+ await axios.post('http://localhost:8000/api/branch/store',{No:No,name:name}).catch(function (error) {
+  console.log(error);
+});
+setNo('');
+setName('');
+Getbranches();
 }
 const Delete= async (id) =>{
   
    return await axios.post(`http://localhost:8000/api/branch/destroy/${id}`).then((res)=>{
       alert(res.data.message);
+      Getbranches();
    })
-  Getbranches()
+  
 }
+
+
+const [modalIsOpen, setModalIsOpen] = useState(false);
+
+const openModal = () => setModalIsOpen(true);
+const closeModal = () => setModalIsOpen(false);
+
+
+
+
+
+
+
 
  return (
 
 
   <div className="services">
   <MDBContainer>
-    <form style={{
-      margin:"auto",
-      marginRight:"1000px",
-      padding:"15px",
-      maxWidth:"500px",
-      alignContent:"center",
+    <form 
+    // style={{
+    //   margin:"auto",
+    //   marginRight:"1000px",
+    //   padding:"15px",
+    //   maxWidth:"500px",
+    //   alignContent:"center",
 
-    }}
+    // }}
     className='d-flex input-group w-auto' onSubmit={store}>
-  <input type='number' className='form-control' placeholder='ادخل رقم الفرع'
-       Value={No} 
-       onChange={(e)=>setNo(e.target.value)}
-       />
-
-      <input type='text' className='form-control' placeholder='ادخل اسم الفرع'
-       Value={name} 
-       onChange={(e)=>setName(e.target.value)}
-       />
-
-       
-       {/* <MDBBtnGroup> */}
-      <MDBBtn type='submit' style={{marginBottom:25}}  color='info'>
-        حفظ
-
-      </MDBBtn>
-      {/* <MDBBtn className='mx-2' color='info' style={{marginBottom:25}} onClick={()=>handelreset()}>
-            reset
-
-          </MDBBtn> */}
-
-           {/* </MDBBtnGroup> */}
+      
 
         </form>
 
 
+        <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{ backgroundColor: 'white', width: '10%' , height : '10%'}}>
+      <AiIcons.AiOutlineClose onClick={closeModal} style={{  width: '5%' , height : '5%' }} />
+        <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
+        
+            
+                <div lang="ar" className="row">
+                        <div className="col-md-6">
+                              <div className="form-group mt-2">
+                                       <label>الرقم:</label>
+                                       <input type='number' 
+                                              className='form-control' 
+                                              placeholder='ادخل رقم الفرع'
+                                              Value={No} 
+                                              onChange={(e)=>setNo(e.target.value)}
+                                              />
+                              </div>   
+                        </div>
+                        <div className="col-md-6">
+                               <div className="form-group">
+                                       <label>الأسم:</label>
+                                       
+                                      <input type='text' 
+                                       className='form-control' 
+                                       placeholder='ادخل اسم الفرع'
+                                       Value={name} 
+                                       onChange={(e)=>setName(e.target.value)}
+                                       />
+                               </div>
+                        </div>
+                </div>
+                    <button type="button" onClick={store} className="btn btn-primary mt-4">حفظ</button>
+                
+           
+        </div>
+      </ReactModal>
 
-
-
-
-
-
-
-
-
-<div style={{marginTop:"100px"}}>
-          <h2>جميع الفروع</h2>
+<div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
+  
+          
           <MDBRow>
             <MDBCol size="12">
+              
+               <h2>جميع الفروع</h2>
+               <AiIcons.AiOutlinePlus onClick={openModal} style={{ background :"green" }}/>
+               {/* <div className="col-md-4"><button onClick={openModal}>أضف فرع جديد</button></div> */}
+               
               <MDBTable>
                 <MDBTableHead dark>
                   <tr>
-                  <th scope='col'>No</th>
-                    <th scope='col'>Name</th>
-                    <th scope='col'>Action</th>
+                    
+                    <th scope='col-md-2' size="2" ></th>
+                    <th scope='col-md-5' size="5">الاسم</th>
+                    <th scope='col-md-5' size="5">الرقم</th>
                    
                   </tr>
                   
@@ -124,18 +153,21 @@ const Delete= async (id) =>{
                       <MDBTableBody >
                         <tr>
                           
-                        <td>{data.No}</td>
-                          <td>{data.name}</td>
-                          <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td>
-                          {/* <td><Link to={`/UpdateBranches/${No.id,name.id}`} className='btn btn-warning mt-4'>Edit</Link>
-                       
+                        {/* <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td> */}
                           
-                          </td> */}
-                   <td>
-                    
-  
-  
-                   </td>
+
+                          <td>
+                             <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} />
+                             <Link to={`/Branches/edit/${data.id}`} >
+                              <AiIcons.AiFillEdit style={{ color: 'green' , width : '10%' , height: '10%' ,alignItems:"center" }}/ >
+                             </Link>
+                          
+                          </td>
+                              
+                          <td>{data.name}</td>
+                          <td>{data.No}</td>
+                          
+                  
                         </tr>
     
                       </MDBTableBody>

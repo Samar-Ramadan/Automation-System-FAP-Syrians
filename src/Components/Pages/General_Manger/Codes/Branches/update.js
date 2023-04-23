@@ -1,7 +1,7 @@
 import React  , {useState}from 'react'
 import axios from 'axios'
 import { useNavigate,useParams } from 'react-router-dom'
-import AuthUser from '../AuthUser';
+import AuthUser from '../../../../Auth_User/AuthUser';
 
 const UpdateBranches= () => {
    const [ No ,setNo ] = useState()
@@ -70,4 +70,4 @@ const UpdateBranches= () => {
     </div>
   )
 }
-export default UpdateFile
+export default UpdateBranches

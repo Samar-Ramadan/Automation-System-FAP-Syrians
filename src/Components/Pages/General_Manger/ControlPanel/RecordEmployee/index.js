@@ -5,7 +5,7 @@ import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import ReactModal from 'react-modal';
-import * as RiIcons from "react-icons/ri";
+import * as AiIcons from "react-icons/ai";
 export default function GetRecordEmployee() {
     const navigate = useNavigate();
     const {http,setToken} = AuthUser();
@@ -25,7 +25,7 @@ export default function GetRecordEmployee() {
         // axios.get('http://localhost:8080/sanctum/csrf-cookie').then( response=> {
          debugger  
          http.post('register',{roll_number:roll_number,first_name:first_name,last_name:last_name,birth_day:birth_day,phone_number:phone_number,email:email,password:password}).then((res)=>{
-            setToken(res.data.user,res.data.authorisation.token);
+            //setToken(res.data.user,res.data.authorisation.token);
             console.log(res);
         }).catch(function (error) {
             console.log(error);
@@ -55,10 +55,9 @@ export default function GetRecordEmployee() {
     </div>
 
       <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal}>
-      <RiIcons.RiArrowDownSFill onClick={closeModal} />
-      <button onClick={closeModal}>Close Modal</button>
+      <AiIcons.AiOutlineClose onClick={closeModal} style={{  width: '5%' , height : '5%' }} />
         <div className="row justify-content-center pt-5" style={{ backgroundColor: 'white', width: '100%' , height : '100%'}}>
-    
+        
             <div className="col-md-8">
                 <div className="card p-4">
                     <div className="row">

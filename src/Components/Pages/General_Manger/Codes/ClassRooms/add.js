@@ -6,28 +6,44 @@ import { Link,useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 //import {v4 as uuid} from "uuid";
-function Add(){
+export const AddClass = () =>{
     const [No ,setNo] = useState("");
 const [name ,setName] = useState("");
 const [size ,setSize] = useState("");
 const [branch_id ,setbranchid] = useState("");
 const [branchList, setbranchList] = useState([{'No':'','name':''}])
-useEffect(() =>{
-  const fetchData = async ()=>{
-      const response = await fetch(`http://localhost:8000/api/branch/index`);
-        const newData = await response.json();
-        setbranchList(newData);
+// useEffect(() =>{
+//   const fetchData = async ()=>{
+//       const response = await fetch(`http://localhost:8000/api/branch/index`);
+//         const newData = await response.json();
+//         setbranchList(newData);
       
-    console.log(newData);
-  };
+//     console.log(newData);
+//   };
 
  
- fetchData();
+//  fetchData();
  
-}, [])
-const handleChange = (event) =>{
-  setbranchid(event.target.value);
+// }, [])
+
+
+const [data,setdata] = useState([])
+useEffect(()=>{
+    Getbranches()
+  },[])
+const Getbranches = async ()=>{
+    return await axios.get('http://localhost:8000/api/branch/index').then((res)=>{
+     setdata(res.data.data);
+    
+    
+  });
 }
+
+
+
+function handleSelectChange(e) {
+    setbranchid(e.target.value);
+  }
     let history=useNavigate();
     const store = async (e) => {
         e.preventDefault()
@@ -57,7 +73,13 @@ const handleChange = (event) =>{
     </Form.Control>
 </Form.Group>
 <Form.Group className="mb-3" controlId='formName'>
-    < select className="form-control" value={branch_id} onChange={handleChange}> 
+<select value={branch_id} onChange={(e)=>setbranchid(e.target.value)}>
+        <option value="">--Please select an option--</option>
+        {data.map(option => (
+          <option key={option.id} value={option.id} >{option.name}</option>
+        ))}
+      </select>
+    {/* < select className="form-control" value={branch_id} onChange={handleChange}> 
               <option value="">Choose Branch Name</option>
 
               {branchList.map(Branch => (
@@ -67,7 +89,7 @@ const handleChange = (event) =>{
               }
 
          
-  </select>
+  </select> */}
     
 </Form.Group>
 
@@ -83,4 +105,3 @@ const handleChange = (event) =>{
 
     )
 }
-export default Add;
