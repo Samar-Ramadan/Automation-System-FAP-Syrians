@@ -45,9 +45,14 @@ function handleSelectChange(e) {
     setbranchid(e.target.value);
   }
     let history=useNavigate();
+    
     const store = async (e) => {
+      debugger
         e.preventDefault()
        await axios.post('http://localhost:8000/api/class/store',{No:No,name:name,size:size,branch_id:branch_id})
+       .catch(function (error) {
+        console.log(error);
+      });
        //navigate('/')
        history('/ClassRoom/index');
       }
@@ -67,29 +72,19 @@ function handleSelectChange(e) {
 
     </Form.Control>
 </Form.Group>
-<Form.Group className="mb-3" controlId='formName'>
+<Form.Group className="mb-3" controlId='formSize'>
     <Form.Control type='text' placeholder=' ادخل سعة القاعة' required onChange={(e)=>setSize(e.target.value)}> 
 
     </Form.Control>
 </Form.Group>
 <Form.Group className="mb-3" controlId='formName'>
-<select value={branch_id} onChange={(e)=>setbranchid(e.target.value)}>
+<select  onChange={(e)=>setbranchid(e.target.value)}>
         <option value="">--Please select an option--</option>
         {data.map(option => (
           <option key={option.id} value={option.id} >{option.name}</option>
         ))}
       </select>
-    {/* < select className="form-control" value={branch_id} onChange={handleChange}> 
-              <option value="">Choose Branch Name</option>
-
-              {branchList.map(Branch => (
-              <option value={Branch.name} key={Branch.id} >{Branch.name}</option>
-    
-              ))
-              }
-
-         
-  </select> */}
+  
     
 </Form.Group>
 
