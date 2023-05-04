@@ -133,7 +133,8 @@ let history=useNavigate();
                     
                            </div>
                </ReactModal>
-
+               <AiIcons.AiOutlinePlus  onClick={openModal} style={{ background :"green" }} title='نت'/>
+                          
               <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
                         <h2>جميع القاعات</h2>
                         <MDBRow>

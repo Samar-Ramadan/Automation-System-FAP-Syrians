@@ -5,10 +5,11 @@ import {MDBTable,MDBTableBody,MDBTableHead,
   MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
   import { Routes, Route, Link } from 'react-router-dom'
 
-  import ReactModal from 'react-modal';
-  import * as AiIcons from "react-icons/ai";
+import ReactModal from 'react-modal';
+import * as AiIcons from "react-icons/ai";
 
-export const Getbranches = () => {
+
+export const Getbranches  = () => {
 
 
 const [data,setdata] = useState([])
@@ -56,13 +57,10 @@ const closeModal = () => setModalIsOpen(false);
 
 
 
-
-
-
  return (
 
 
-  <div className="services">
+  <div className="trans-content">
   <MDBContainer>
     <form 
     // style={{
@@ -79,7 +77,16 @@ const closeModal = () => setModalIsOpen(false);
         </form>
 
 
-        <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{ backgroundColor: 'white', width: '10%' , height : '10%'}}>
+         <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{
+          content: {
+            width: '70%',
+            height : '60%',
+            position: 'absolute',
+            top: '50%',
+            left: '40%',
+            transform: 'translate(-50%, -50%)'
+            
+          }}}>
       <AiIcons.AiOutlineClose onClick={closeModal} style={{  width: '5%' , height : '5%' }} />
         <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
         
@@ -113,13 +120,14 @@ const closeModal = () => setModalIsOpen(false);
                 
            
         </div>
-      </ReactModal>
+      </ReactModal> 
 
 <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
   
           
           <MDBRow>
-            <MDBCol size="12">
+            
+            <MDBCol size="10">
               
                <h2>جميع الفروع</h2>
                <AiIcons.AiOutlinePlus onClick={openModal} style={{ background :"green" }}/>
@@ -158,9 +166,10 @@ const closeModal = () => setModalIsOpen(false);
 
                           <td>
                              <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} />
-                             <Link to={`/Branches/edit/${data.id}`} >
+                             
+                             {/* <Link to={`/Branches/edit/${data.id}`} >
                               <AiIcons.AiFillEdit style={{ color: 'green' , width : '10%' , height: '10%' ,alignItems:"center" }}/ >
-                             </Link>
+                             </Link> */}
                           
                           </td>
                               
@@ -178,7 +187,10 @@ const closeModal = () => setModalIsOpen(false);
                     }
                   </MDBTable>
     
-                </MDBCol>
+            </MDBCol>
+            <MDBCol size="4">
+
+            </MDBCol>
               </MDBRow>
 
 </div>
@@ -194,4 +206,6 @@ const closeModal = () => setModalIsOpen(false);
  )
 }
 
-// export default Getbranches 
+
+
+

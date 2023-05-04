@@ -9,6 +9,7 @@ export default function Register() {
     const [last_name,setLastName] = useState();
     const [roll_number,setRoll] =useState();
     const [birth_day,setBirthDay] =useState();
+    const [branch_id,setBranchId] =useState();
     const [phone_number,setPhone] =useState();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
@@ -20,7 +21,7 @@ export default function Register() {
        // axios.defaults.withCredentials = true;
         // axios.get('http://localhost:8080/sanctum/csrf-cookie').then( response=> {
          debugger  
-         http.post('register',{roll_number:roll_number,first_name:first_name,last_name:last_name,birth_day:birth_day,phone_number:phone_number,email:email,password:password}).then((res)=>{
+         http.post('register',{roll_number:roll_number,first_name:first_name,last_name:last_name,birth_day:birth_day,branch_id:branch_id,phone_number:phone_number,email:email,password:password}).then((res)=>{
             setToken(res.data.user,res.data.authorisation.token);
             console.log(res);
         }).catch(function (error) {
@@ -60,6 +61,13 @@ export default function Register() {
                         id="birth_day" />
                     </div>
                     
+                    <div className="form-group mt-3">
+                        <label>setBranchId:</label>
+                        <input type="number" className="form-control" placeholder="Enter birth_day"
+                            onChange={e=>setBranchId(e.target.value)}
+                        id="setBranchId" />
+                    </div>
+
                     <div className="form-group mt-3">
                         <label>Number:</label>
                         <input type="number" className="form-control" placeholder="Enter phone_number"

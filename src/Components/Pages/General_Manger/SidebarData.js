@@ -68,7 +68,7 @@ export const SidebarData = [
  
     subNav: [
       {
-        title: "تسجيل الموظفين",
+        title: "تسجيل مدراء الفروع",
         path: "/ControlPanel/RecordEmployee",
         icon: <IoIcons.IoIosPaper />,
       },
