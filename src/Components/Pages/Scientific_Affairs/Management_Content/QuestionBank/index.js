@@ -157,7 +157,7 @@ const GetCourses = async ()=>{
 
                              
                         <div className="form-group mt-2">
-                                       <label>model </label>
+                                       <label>النموذج </label>
 
                                        <input
            value={model}
@@ -169,7 +169,7 @@ const GetCourses = async ()=>{
 
 
                         <div className='mb-3'>
-           <label className='form-lable'>نموذج الأسئلة</label>
+           <label className='form-lable'> الأسئلة</label>
            <input className='form-control'  type="file" onChange={(event) => setfile(event.target.files[0])} />
 
        </div>
@@ -219,7 +219,7 @@ const GetCourses = async ()=>{
                     <th scope='col-md-2' size="2" ></th>
                     <th scope='col'>الفرع  </th>
                     <th scope='col'>نموذج الأسئلة</th>
-                    <th scope='col'>مودل</th>
+                    <th scope='col'>النموذج</th>
                     <th scope='col'>الدورة </th>
                     
                     
