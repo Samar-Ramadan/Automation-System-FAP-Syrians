@@ -1,8 +1,8 @@
 import {  Routes, Route } from "react-router-dom";
-import Trainer_Management from "./Trainer_Management/index";
-
-import QuestionBank from './Management_Content/QuestionBank/index';
-import Subjects from './Management_Content/Subjects/index';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import Cards from "./Cards/index"
+import GetRecordStudent from "./ManagementStudent/RecordStudent/index"
 import NavBar from "../LayOut/NavBar";
 import SideBar from "../LayOut/SideBar";
 import {SidebarData} from './SidebarData'
@@ -13,15 +13,25 @@ function index() {
     <>
    
       <NavBar/>
-      <SideBar SidebarData={SidebarData} />
-      <Routes>
-   
-        
-        <Route path='/QuestionBank/index' element={<QuestionBank/>} /> 
-        <Route path='/Subjects/index' element={<Subjects/>} />
-        <Route path='/Trainer_Management/index' element={<Trainer_Management/>} /> 
-        
-      </Routes>
+
+      <Container fluid>
+         <Row>
+               <Col sm={2}>
+                  <SideBar SidebarData={SidebarData} />
+               </Col>
+               <Col sm={10}>
+                  <Routes>
+                  <Route path='/Cards/index' element={<Cards/>} /> 
+                 <Route path='/ManagementStudent/RecordStudent' element={<GetRecordStudent/>} />
+                    </Routes>
+               </Col>
+      
+
+         </Row>
+
+      </Container>
+
+      
     </>
   );
 }

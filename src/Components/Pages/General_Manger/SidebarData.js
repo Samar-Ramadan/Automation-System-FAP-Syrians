@@ -7,11 +7,9 @@ import * as RiIcons from "react-icons/ri";
 export const SidebarData = [
   {
     title: "الترميزات",
-    
-    path: "/about-us",
     icon: <AiIcons.AiFillHome />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    // iconClosed: <RiIcons.RiArrowDownSFill />,
+    // iconOpened: <RiIcons.RiArrowUpSFill />,
  
     subNav: [
       {
@@ -27,24 +25,23 @@ export const SidebarData = [
     ],
   },
   {
-    title: "التقارير",
-    path: "/services",
+    title:  "التقارير",
     icon: <IoIcons.IoIosPaper />,
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    // iconClosed: <RiIcons.RiArrowDownSFill />,
+    // iconOpened: <RiIcons.RiArrowUpSFill />,
  
     subNav: [
       {
         title: "حول الفروع",
         path: "/services/services1",
         icon: <IoIcons.IoIosPaper />,
-        cName: "sub-nav",
+        
       },
       {
         title: "حول الدورات",
         path: "/services/services2",
         icon: <IoIcons.IoIosPaper />,
-        cName: "sub-nav",
+        
       },
       {
         title: "حول تقييمات المدربين",
@@ -63,8 +60,8 @@ export const SidebarData = [
     title: "لوحة التحكم",
     icon: <FaIcons.FaEnvelopeOpenText />,
  
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
+    // iconClosed: <RiIcons.RiArrowDownSFill />,
+    // iconOpened: <RiIcons.RiArrowUpSFill />,
  
     subNav: [
       {
@@ -79,9 +76,5 @@ export const SidebarData = [
       },
     ],
   },
-  {
-    title: "Support",
-    path: "/support",
-    icon: <IoIcons.IoMdHelpCircle />,
-  },
+
 ];

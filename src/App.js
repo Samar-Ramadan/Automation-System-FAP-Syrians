@@ -8,7 +8,8 @@ import Content from "./Components/Pages/Content";
 import AuthUser from './Components/Auth_User/AuthUser';
 //import {OurVision} from './Components/Pages/General_Manger/Codes/Branches/index'
 import BranchManger from "./Components/Pages/Branch_Manger/index";
-import ScientificAffairs from "./Components/Pages/Scientific_Affairs/index"
+import ScientificAffairs from "./Components/Pages/Scientific_Affairs/index";
+import Receptionist from "./Components/Pages/Receptionist/index"
 
 
 // class App extends Component {
@@ -36,6 +37,10 @@ function App(){
   else if(getUser().roll_number===2){
     debugger
     return <BranchManger />
+  }
+  else if(getUser().roll_number===3){
+    debugger
+    return <Receptionist />
   }
   return (
       <GeneralManger />

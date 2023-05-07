@@ -1,5 +1,7 @@
 import React from "react";
 import {Routes, Route } from "react-router-dom";
+import { Container, Row, Col } from 'react-bootstrap';
+
 import {Getbranches} from "./Codes/Branches/index";
 import Editbranches from "./Codes/Branches/update";
 import {GetClassRoom} from "./Codes/ClassRooms/index";
@@ -16,18 +18,31 @@ function index () {
   return (
     <>
       <NavBar/>
-      <SideBar SidebarData={SidebarData} />
-      <Routes>
+
+      <Container fluid>
+         <Row>
+               <Col sm={2}>
+                  <SideBar SidebarData={SidebarData} />
+               </Col>
+               <Col sm={10}>
+                  <Routes>
    
-        <Route path='/Branches/index' element={<Getbranches/>} /> 
-        <Route path='/Branches/edit:id' element={<Editbranches/>} /> 
-        <Route path='/ClassRoom/index' element={<GetClassRoom/>} /> 
-        <Route path="/ClassRoom/create" element={<AddClass/>}/>
-        <Route path='/Survey' element={<Survey/>} />
-        <Route path='/ControlPanel/RecordEmployee' element={<GetRecordEmployee/>} />
-        <Route path='/events/events2' element={<EventsTwo/>} />
-      </Routes>
-    </>
+                         <Route path='/Branches/index' element={<Getbranches/>} /> 
+                         <Route path='/Branches/edit:id' element={<Editbranches/>} /> 
+                         <Route path='/ClassRoom/index' element={<GetClassRoom/>} /> 
+                         <Route path="/ClassRoom/create" element={<AddClass/>}/>
+                         <Route path='/Survey' element={<Survey/>} />
+                         <Route path='/ControlPanel/RecordEmployee' element={<GetRecordEmployee/>} />
+                         <Route path='/events/events2' element={<EventsTwo/>} />
+                    </Routes>
+               </Col>
+      
+
+         </Row>
+
+      </Container>
+
+          </>
   );
 }
    

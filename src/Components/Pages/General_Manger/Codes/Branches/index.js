@@ -4,6 +4,7 @@ import {MDBTable,MDBTableBody,MDBTableHead,
   MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,
   MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
   import { Routes, Route, Link } from 'react-router-dom'
+  import { Table, Button } from 'react-bootstrap';
 
 import ReactModal from 'react-modal';
 import * as AiIcons from "react-icons/ai";
@@ -77,7 +78,80 @@ const closeModal = () => setModalIsOpen(false);
         </form>
 
 
-         <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{
+          
+          {/* <MDBRow>
+            
+            <MDBCol size="12">
+              
+               <h2>جميع الفروع</h2>
+               <AiIcons.AiOutlinePlus onClick={openModal} style={{ background :"green" }}/>
+               
+              <MDBTable>
+                <MDBTableHead dark>
+                  <tr>
+                    
+                    <th scope='col-md-2' size="2" ></th>
+                    <th scope='col-md-5' size="5">الاسم</th>
+                    <th scope='col-md-5' size="5">الرقم</th>
+                   
+                  </tr>
+                  
+
+                </MDBTableHead>
+
+                {
+                  
+                  data.length === 0 ? (
+                    <MDBTableBody className='align-center mb-0'>
+                    <tr>
+                       <td colSpan={8} className='text-center mb-0'>
+                      No Data 
+                       </td>
+                    </tr>
+                    </MDBTableBody>
+                  ):(
+                    data.map((data)=>(
+                      <MDBTableBody >
+                        <tr>
+                          
+
+                          <td>
+                             <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} />
+                             
+                          
+                          </td>
+                              
+                          <td>{data.name}</td>
+                          <td>{data.No}</td>
+                          
+                  
+                        </tr>
+    
+                      </MDBTableBody>
+    
+    
+                        ))
+                      )
+                    }
+                  </MDBTable>
+    
+            </MDBCol>
+              </MDBRow> */}
+
+
+
+
+
+
+
+
+
+              </MDBContainer>
+
+          
+
+
+              <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{
           content: {
             width: '70%',
             height : '60%',
@@ -122,86 +196,53 @@ const closeModal = () => setModalIsOpen(false);
         </div>
       </ReactModal> 
 
+
+
+
+
 <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
-  
-          
-          <MDBRow>
-            
-            <MDBCol size="10">
-              
-               <h2>جميع الفروع</h2>
-               <AiIcons.AiOutlinePlus onClick={openModal} style={{ background :"green" }}/>
-               {/* <div className="col-md-4"><button onClick={openModal}>أضف فرع جديد</button></div> */}
-               
-              <MDBTable>
-                <MDBTableHead dark>
-                  <tr>
-                    
-                    <th scope='col-md-2' size="2" ></th>
-                    <th scope='col-md-5' size="5">الاسم</th>
-                    <th scope='col-md-5' size="5">الرقم</th>
-                   
-                  </tr>
-                  
+<div>
+      <h2>جميع الفروع</h2>
+      <Button variant="success" onClick={openModal} style={{fontSize: "10px", 
+                         width: "15%"
+                         }}>أضف فرع جديد</Button>
 
-                </MDBTableHead>
-
-                {
-                  
-                  data.length === 0 ? (
-                    <MDBTableBody className='align-center mb-0'>
-                    <tr>
-                       <td colSpan={8} className='text-center mb-0'>
-                      No Data 
-                       </td>
-                    </tr>
-                    </MDBTableBody>
-                  ):(
-                    data.map((data)=>(
-                      <MDBTableBody >
-                        <tr>
-                          
-                        {/* <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td> */}
-                          
-
-                          <td>
-                             <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} />
+      <Table striped bordered hover  style={{fontSize: "16px", 
+                         width: "100%"
+                         }}>
+        <thead style={{background:"#eaeae1",
+        borderBottom: "2px solid blue"}}>
+          <tr >
+            <th ></th>
+            <th >الاسم</th>
+            <th>الرقم</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={3} className="text-center">
+                No Data
+              </td>
+            </tr>
+          ) : (
+            data.map((data) => (
+              <tr key={data.id}>
+                <td style={{width:"20%"}}>
+                {/* <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} /> */}
                              
-                             {/* <Link to={`/Branches/edit/${data.id}`} >
-                              <AiIcons.AiFillEdit style={{ color: 'green' , width : '10%' , height: '10%' ,alignItems:"center" }}/ >
-                             </Link> */}
-                          
-                          </td>
-                              
-                          <td>{data.name}</td>
-                          <td>{data.No}</td>
-                          
-                  
-                        </tr>
-    
-                      </MDBTableBody>
-    
-    
-                        ))
-                      )
-                    }
-                  </MDBTable>
-    
-            </MDBCol>
-            <MDBCol size="4">
-
-            </MDBCol>
-              </MDBRow>
-
-</div>
-
-
-
-
-
-
-
-              </MDBContainer>
+                  <Button variant="danger" onClick={() => Delete(data.id)}>حذف</Button>
+                  {/* <Button variant="primary" href={`/Branches/edit/${data.id}`}>تحرير</Button> */}
+                </td>
+                <td style={{width:"50%"}}>{data.name}</td>
+                <td style={{width:"30%"}}>{data.No}</td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </Table>
+    </div>  
+    </div> 
    </div>
  )
 }
