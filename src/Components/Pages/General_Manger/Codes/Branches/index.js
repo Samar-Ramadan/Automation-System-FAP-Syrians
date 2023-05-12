@@ -200,7 +200,7 @@ const closeModal = () => setModalIsOpen(false);
 
 
 
-<div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
+<div className='row' lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
 <div>
       <h2>جميع الفروع</h2>
       <Button variant="success" onClick={openModal} style={{fontSize: "10px", 

@@ -17,11 +17,7 @@ export const SidebarData = [
         path: "/Branches/index",
         icon: <IoIcons.IoIosPaper />,
       },
-      {
-        title: "القاعات",
-        path: "/ClassRoom/index",
-        icon: <IoIcons.IoIosPaper />,
-      },
+  
     ],
   },
   {

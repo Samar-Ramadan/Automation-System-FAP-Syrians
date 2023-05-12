@@ -14,6 +14,7 @@ function index() {
       <SideBar SidebarData={SidebarData}/>
       <Routes>
         <Route path='/ClassRoom/index' element={<GetClassRoom/>} /> 
+    
         <Route path='/Trainer_Management/index' element={<Trainer_Management/>} /> 
       </Routes>
     </>

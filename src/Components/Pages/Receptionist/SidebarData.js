@@ -37,5 +37,21 @@ export const SidebarData = [
       
     ],
   },
+  {
+    title: " ادارة الدورات",
+    
+    icon: <AiIcons.AiFillHome />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+ 
+    subNav: [
+      {
+        title: "اضافة دورة ",
+        path: "/ManagementCourse/RecordCourse",
+        icon: <IoIcons.IoIosPaper />,
+      },
+      
+    ],
+  },
   
 ];

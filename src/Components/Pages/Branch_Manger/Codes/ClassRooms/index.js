@@ -1,180 +1,198 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState, Fragment } from 'react'
+
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate} from 'react-router-dom'
+import {Button,Form} from "react-bootstrap"
 import {MDBTable,MDBTableBody,MDBTableHead,
   MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,
   MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
 
-import AuthUser from "../../../../Auth_User/AuthUser";
-  import { useNavigate } from 'react-router-dom'
+  import ReactModal from 'react-modal';
+  import * as AiIcons from "react-icons/ai";
 
   //const endpoint = 'http://localhost:8000/api/branch/store'
 
 export const GetClassRoom = () => {
+ 
 
-  const {http} = AuthUser();
-const [ data,setClassRooms ] = useState([])
+const [ClassRoom,setClassRoom ] = useState([])
+const [No ,setNo] = useState("");
+const [name ,setName] = useState("");
 const [size ,setSize] = useState("");
+const [branch_id ,setbranchid] = useState("");
 
-
-useEffect(()=>{
-  GetClassRooms()
-},[])
-const GetClassRooms = async ()=>{
-  debugger
-   http.get('class/index').then((res1)=>{
-    setClassRooms (res1.data.data);
-    console.log(res1.data);
+ useEffect(()=>{
+  GetClassRoom()
+ },[])
+const GetClassRoom = async ()=>{
+   return await axios.get('http://localhost:8000/api/class/index').then((res)=>{
+    setClassRoom(res.data.data);
    
    
- }).catch((err)=>{
-  console.log(err);
  });
  
  //console.log(response.data.data)
 }
-const store = async (e) => {
-  e.preventDefault()
-  http.post('class/store',{size:size});
-  GetClassRooms();
- //navigate('/')
-}
+
 const Delete= async (id) =>{
   
-  http.post(`class/destroy/${id}`).then((res)=>{
+   return await axios.post(`http://localhost:8000/api/class/destroy/${id}`).then((res)=>{
       alert(res.data.message);
    })
-   GetClassRooms()
+  GetClassRoom()
+  history('/index');
 }
 
-const [selectedOption, setSelectedOption] = useState('');
-const handleSelect = (event) => {
-  setSelectedOption(event.target.value);
-};
 
-const [ options,setdata ] = useState([])
+
+
+
+
+
+const [modalIsOpen, setModalIsOpen] = useState(false);
+
+const openModal = () => setModalIsOpen(true);
+const closeModal = () => setModalIsOpen(false);
+
+
+
+const [Branches,setbranches] = useState([])
 useEffect(()=>{
-  Getbranches()
-},[])
+    Getbranches()
+  },[])
 const Getbranches = async ()=>{
-  http.get('branch/index').then((res)=>{
-   setdata(res.data.data);
-  
-  
-});
+    return await axios.get('http://localhost:8000/api/branch/index').then((res)=>{
+     setbranches(res.data.data);
+    
+    
+  });
+}
+
+
+
+
+let history=useNavigate();
+    
+    const store = async (e) => {
+      debugger
+        e.preventDefault()
+       await axios.post('http://localhost:8000/api/class/store',{No:No,name:name,size:size,branch_id:branch_id})
+       .catch(function (error) {
+        console.log(error);
+      });
+      GetClassRoom();
+      closeModal();
+      }
+
  return (
 
 
+          
+
   <div className="services">
   <MDBContainer>
-    <form style={{
-      margin:"auto",
-      marginRight:"1000px",
-      padding:"15px",
-      maxWidth:"500px",
-      alignContent:"center",
 
-    }}
-    className='d-flex input-group w-auto' onSubmit={store}>
-
-      <input type='text' className='form-control' placeholder='ادخل اسم القاعة'
-       Value={size} 
-       onChange={(e)=>setSize(e.target.value)}
-       />
-
-<label htmlFor="select">Select an option:</label>
-      <select id="select" value={selectedOption} onChange={handleSelect}>
-        <option value="">--Please choose an option--</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-       
-       {/* <MDBBtnGroup> */}
-      <MDBBtn type='submit' style={{marginBottom:25}}  color='info'>
-        حفظ
-
-      </MDBBtn>
-      {/* <MDBBtn className='mx-2' color='info' style={{marginBottom:25}} onClick={()=>handelreset()}>
-            reset
-
-          </MDBBtn> */}
-
-           {/* </MDBBtnGroup> */}
-
-        </form>
+               <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{ backgroundColor: 'white', width: '10%' , height : '10%'}}>
+                           <AiIcons.AiOutlineClose onClick={closeModal} style={{  width: '5%' , height : '5%' }} />
+                           <div lang="ar" style={{ textAlign: 'right'}}>
+        
+            
+                               <Form className="d-grid gap-2" style={{margin:"5rem"}}>
+                                           <Form.Group className="mb-3" controlId='formNo'>
+                                                    <Form.Control type='text' placeholder=' ادخل رقم القاعة' required onChange={(e)=>setNo(e.target.value)}> 
+                                        
+                                                    </Form.Control>
+                                           </Form.Group>
+                                           <Form.Group className="mb-3" controlId='formName'>
+                                           <Form.Control type='text' placeholder=' ادخل اسم القاعة' required onChange={(e)=>setName(e.target.value)}> 
+                               
+                                           </Form.Control>
+                                           </Form.Group>
+                                           <Form.Group className="mb-3" controlId='formSize'>
+                                           <Form.Control type='text' placeholder=' ادخل سعة القاعة' required onChange={(e)=>setSize(e.target.value)}> 
+                               
+                                           </Form.Control>
+                                           </Form.Group>
+                                           <Form.Group className="mb-3" controlId='formName'>
+                                           <select  onChange={(e)=>setbranchid(e.target.value)}>
+                                                   <option value="">--Please select an option--</option>
+                                                   {Branches.map(option => (
+                                                     <option key={option.id} value={option.id} >{option.name}</option>
+                                                   ))}
+                                           </select>
+  
+    
+                               </Form.Group>
 
 
-
-
-
-
-
-
-
-
-
-<div style={{marginTop:"100px"}}>
-          <h2>جميع القاعات</h2>
-          <MDBRow>
-            <MDBCol size="12">
-              <MDBTable>
-                <MDBTableHead dark>
-                  <tr>
-                  
-                    <th scope='col'>Size</th>
-                    <th scope='col'>Action</th>
-                   
-                  </tr>
-                  
-
-                </MDBTableHead>
-
-                {
-                  
-                  data.length === 0 ? (
-                    <MDBTableBody className='align-center mb-0'>
-                    <tr>
-                       <td colSpan={8} className='text-center mb-0'>
-                      No Data 
-                       </td>
-                    </tr>
-                    </MDBTableBody>
-                  ):(
-                    data.map((data)=>(
-                      <MDBTableBody >
-                        <tr>
+                               <Button type="submit" onClick={(e)=>store(e)}>
+                                   حفظ
+                               </Button>
+                               </Form>
+               
+                    
+                           </div>
+               </ReactModal>
+               <AiIcons.AiOutlinePlus  onClick={openModal} style={{ background :"green" }} title='نت'/>
                           
+              <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
+                        <h2>جميع القاعات</h2>
+                        <MDBRow>
+                          <MDBCol size="12">
+                          <AiIcons.AiOutlinePlus  onClick={openModal} style={{ background :"green" }} title='نت'/>
+                            <MDBTable>
+                              <MDBTableHead dark>
+                                <tr>
+                                <th scope='col'></th>
+                                <th scope='col'>الفرع</th>
+                                <th scope='col'>سعة القاعة</th>
+                                <th scope='col'>الأسم</th>
+                                <th scope='col'>الرقم</th>
+                                 
+                                </tr>
+                                
+              
+                              </MDBTableHead>
+              
+                              {
+                                
+                                ClassRoom.length === 0 ? (
+                                  <MDBTableBody className='align-center mb-0'>
+                                  <tr>
+                                     <td colSpan={8} className='text-center mb-0'>
+                                    No Data 
+                                     </td>
+                                  </tr>
+                                  </MDBTableBody>
+                                ):(
+                                  ClassRoom.map((data)=>(
+                                    <MDBTableBody >
+                                      <tr>
+                                      <td>
+                                           <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} />
+                                      </td>
+                                      <td>{data.branch_id}</td>
+                                      <td>{data.size}</td>
+                                      <td>{data.name}</td>
+                                      <td>{data.No}</td>
+                                      
+                                      
+                                      </tr>
+                  
+                                    </MDBTableBody>
+                  
+                  
+                                      ))
+                                    )
+                                  }
+                                </MDBTable>
+                              </MDBCol>
+                            </MDBRow>
+              
+              </div>
 
-                          <td>{data.size}</td>
-                          <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td>
-                   <td></td>
-                        </tr>
-    
-                      </MDBTableBody>
-    
-    
-                        ))
-                      )
-                    }
-                  </MDBTable>
-    
-                </MDBCol>
-              </MDBRow>
 
-</div>
-
-
-
-
-
-
-
-              </MDBContainer>
+ </MDBContainer>
    </div>
  )
-}
-
 }

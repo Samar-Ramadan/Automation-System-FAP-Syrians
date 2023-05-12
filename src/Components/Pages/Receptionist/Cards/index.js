@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Card from './Card';
 import ReactToPrint from 'react-to-print';
-import { useLocation } from 'react-router-dom';
+import { useLocation ,useHistory} from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,6 +21,8 @@ const Index = (props) => {
    //const data = props.data !== undefined ? props.data : null;
   // console(data);
 
+ // const history = useHistory();
+  
   const location = useLocation();
   const data = location.state;
 

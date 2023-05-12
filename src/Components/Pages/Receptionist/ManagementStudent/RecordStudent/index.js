@@ -48,16 +48,16 @@ export default function GetRecordStudent() {
       }
 
 
-      //const history = useHistory();
+      const history = useNavigate();
     const submitForm = () =>{
       debugger
 
       
         http.post('register',{roll_number:roll_number,first_name:first_name,last_name:last_name,birth_day:birth_day,branch_id:branch_id,phone_number:phone_number,email:email,password:password}).then((res)=>{
           const data=res.data;
-         // history.push('/Cards/index', data);
+       //  history.push('/Cards/index', data);
 
-          //history('/Cards/index' , { data });
+          history('/Cards/index' , { data });
 
           // <Link to={{ pathname: '/Cards/index', state:  data  }}>
           // </Link>
