@@ -14,27 +14,29 @@ import {MDBTable,MDBTableBody,MDBTableHead,
 
 
 
-export default function GetRecordCourse() {
+export default function GetRecordSubscribe() {
     const {http} = AuthUser();
-    const [course,setCourse] = useState([]);
+    const [subscribe,setSubscribe] = useState([]);
+    const [course_id,setCourseId] =useState();
+    const [card_id,setCardId] =useState();
     const [branch_id,setBranchId] =useState();
-    const [subject_id,setSubjectId] =useState();
-    const [start,setStart] =useState();
-    const [end,setEnd] =useState();
-    const [approved,setapproved] =useState(false);
+    const [state,setState] =useState(false);
+    const [date_id,setDateId] =useState();
+   
+
  
-    const [trainer_id,setTrainerId] =useState();
+    
    
 
 
 
 
     useEffect(()=>{
-        GetRecordCourse()
+      GetRecordSubscribe()
        },[])
-      const GetRecordCourse = async ()=>{
-         return await axios.get('http://localhost:8000/api/course/index').then((res)=>{
-          setCourse(res.data.data);
+      const GetRecordSubscribe = async ()=>{
+         return await axios.get('http://localhost:8000/api/subscribe/index').then((res)=>{
+          setSubscribe(res.data.data);
          
          
        });
@@ -56,17 +58,38 @@ const [Branches,setbranches] = useState([]);
        });
       }
     
-      const [Subjects,setsubjects] = useState([]);
+      const [Courses,setCourses] = useState([]);
       useEffect(()=>{
-        GetSubjects()
+        GetCourses()
         
       },[])
-      const GetSubjects = async ()=>{
-         http.get('http://localhost:8000/api/subject/index').then((res)=>{
-          setsubjects(res.data.data);
+      const GetCourses = async ()=>{
+         http.get('http://localhost:8000/api/course/index').then((res)=>{
+          setCourses(res.data.data);
+       });
+      }
+
+      const [Cards,setCards] = useState([]);
+      useEffect(()=>{
+        GetCards()
+        
+      },[])
+      const GetCards = async ()=>{
+         http.get('http://localhost:8000/api/card/index').then((res)=>{
+          setCards(res.data.data);
        });
       }
       
+      const [Dates,setDates] = useState([]);
+      useEffect(()=>{
+        GetDates()
+        
+      },[])
+      const GetDates = async ()=>{
+         http.get('http://localhost:8000/api/date/index').then((res)=>{
+          setDates(res.data.data);
+       });
+      }
 
 
     //   const [Trainers,settrainers] = useState([]);
@@ -90,11 +113,11 @@ const [Branches,setbranches] = useState([]);
     const submitForm = async (e) => {
         debugger
           e.preventDefault()
-         await axios.post('http://localhost:8000/api/course/store',{branch_id:branch_id,subject_id:subject_id,trainer_id:trainer_id,approved:approved,start:start,end:end})
+         await axios.post('http://localhost:8000/api/subscribe/store',{course_id:course_id,card_id:card_id,branch_id:branch_id,state:state,date_id:date_id})
          .catch(function (error) {
           console.log(error);
         });
-        GetRecordCourse();
+        GetRecordSubscribe();
         closeModal();
         }
 
@@ -107,14 +130,14 @@ const [Branches,setbranches] = useState([]);
 
  const Delete= async (id) =>{
   
-   (`http://localhost:8000/api/course/destroy/${id}`).then((res)=>{
+   (`http://localhost:8000/api/subscribe/destroy/${id}`).then((res)=>{
        alert(res.data.message);
     })
-   GetRecordCourse()
+   GetRecordSubscribe()
    history('/index');
  }
  function handleCheckboxChange() {
-    setapproved(!approved);
+    setState(!state);
   }
     return(
 
@@ -150,42 +173,54 @@ const [Branches,setbranches] = useState([]);
 
                             </div>
                             <div className="form-group mt-2">
-                                     <label>الدورة </label>
-                                     <select  className='form-control'  onChange={(e)=>setSubjectId(e.target.value)}>
+                                     <label>الطالب </label>
+                                     <select  className='form-control'  onChange={(e)=>setCardId(e.target.value)}>
                                                  <option value="">--Please select an option--</option>
-                                                 {Subjects.map(option => (
+                                                 {Cards.map(option => (
                                                    <option key={option.id} value={option.id} >{option.name}</option>
                                                  ))}
                                          </select>
 
                             </div>
                             <div className="form-group mt-2">
-                                     <label>المدرب </label>
-                                     <input type="number" className="form-control" value={trainer_id}
-                                           onChange={e=>setTrainerId(e.target.value)}
-                                        />
+                                     <label>الكورس </label>
+                                     <select  className='form-control'  onChange={(e)=>setCourseId(e.target.value)}>
+                                                 <option value="">--Please select an option--</option>
+                                                 {Courses.map(option => (
+                                                   <option key={option.id} value={option.id} >{option.name}</option>
+                                                 ))}
+                                         </select>
 
                             </div>
                             <div className="form-group mt-2">
-                                     <label>معتمد؟ </label>
-                                     <input  type="checkbox"  checked={approved}  onChange={handleCheckboxChange}/>
+                                     <label>البطاقة </label>
+                                     <select  className='form-control'  onChange={(e)=>setDateId(e.target.value)}>
+                                                 <option value="">--Please select an option--</option>
+                                                 {Dates.map(option => (
+                                                   <option key={option.id} value={option.id} >{option.name}</option>
+                                                 ))}
+                                         </select>
+
+                            </div>
+
+
+
+                            <div className="form-group mt-2">
+                                     <label>الحالة </label>
+                                     <input  type="checkbox"  checked={state}  onChange={handleCheckboxChange}/>
 
                             </div>
                             <div className="form-group mt-2">
-                                     <label>بداية الدورة </label>
-                                     <input type="date" className="form-control" 
-                                         value={start}  onChange={e=>setStart(e.target.value)}
-                                           id="StartDate"   />
-                            </div>
-                            <div className="form-group mt-2">
-                                     <label>نهاية الدورة </label>
-                                     <input type="date" className="form-control" 
-                                     value={end}      onChange={e=>setEnd(e.target.value)}
-                                           id="EndDate"  />
-                            </div>
-                    
+                                     <label>البطاقة </label>
+                                     <select  className='form-control'  onChange={(e)=>setDateId(e.target.value)}>
+                                                 <option value="">--Please select an option--</option>
+                                                 {Dates.map(option => (
+                                                   <option key={option.id} value={option.id} >{option.name}</option>
+                                                 ))}
+                                         </select>
 
-                    
+                            </div>
+                           
                     <button type="button" onClick={submitForm} className="btn btn-primary mt-4">حفظ</button>
                 </div>
       
@@ -199,7 +234,7 @@ const [Branches,setbranches] = useState([]);
         <MDBRow>
           <MDBCol size="12">
             
-             <h2>جميع الدورات</h2>
+             <h2>جميع الاشتراكات</h2>
              <AiIcons.AiOutlinePlus onClick={openModal} style={{ background :"green" }}/>
              {/* <div className="col-md-4"><button onClick={openModal}>أضف فرع جديد</button></div> */}
              
@@ -207,11 +242,10 @@ const [Branches,setbranches] = useState([]);
               <MDBTableHead dark>
                 <tr>
                 <th scope='col-md-2' size="2" ></th>
-                <th scope='col-md-5' size="5">نهاية الدورة</th>
-                <th scope='col-md-5' size="5">بداية الدورة</th>
-                <th scope='col-md-5' size="5">معتمد</th>
-                <th scope='col-md-5' size="5">المدرب</th>
-                <th scope='col-md-5' size="5">المادة</th>
+                <th scope='col-md-5' size="5">تاريخ الاشتراك </th>
+                <th scope='col-md-5' size="5">الحالة</th>
+                <th scope='col-md-5' size="5">الدورة</th>
+                <th scope='col-md-5' size="5">الطالب</th>
                 <th scope='col-md-5' size="5">الفرع</th>
                  
                  
@@ -228,7 +262,7 @@ const [Branches,setbranches] = useState([]);
 
               {
                 
-                course.length === 0 ? (
+                subscribe.length === 0 ? (
                   <MDBTableBody className='align-center mb-0'>
                   <tr>
                      <td colSpan={8} className='text-center mb-0'>
@@ -237,7 +271,7 @@ const [Branches,setbranches] = useState([]);
                   </tr>
                   </MDBTableBody>
                 ):(
-                  course.map((data)=>(
+                  subscribe.map((data)=>(
                     <MDBTableBody >
                       <tr>
                         
@@ -253,11 +287,11 @@ const [Branches,setbranches] = useState([]);
                         
                         </td>
                             
-                        <td>{data.end}</td>
-                        <td>{data.start}</td>
-                        <td>{data.approved}</td>
-                        <td>{data.trainer_id}</td>
-                        <td>{data.subject_id}</td>
+                     
+                        <td>{data.date_id}</td>
+                        <td>{data.state}</td>
+                        <td>{data.course_id}</td>
+                        <td>{data.card_id}</td>
                         <td>{data.branch_id}</td>
                         
                 
