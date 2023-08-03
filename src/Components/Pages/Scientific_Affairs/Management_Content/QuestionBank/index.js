@@ -4,8 +4,10 @@ import {MDBTable,MDBTableBody,MDBTableHead,
   MDBRow,MDBCol,MDBContainer,MDBBtn,MDBBtnGroup,
   MDBPagination,MDBPaginationItem,MDBPaginationLink} from "mdb-react-ui-kit"
   import { Routes, Route, Link } from 'react-router-dom'
+  import { Form, Button, Modal } from 'react-bootstrap';
+  import 'bootstrap/dist/css/bootstrap.min.css';
 
-import ReactModal from 'react-modal';
+
 import * as AiIcons from "react-icons/ai";
 
 
@@ -13,7 +15,7 @@ export const GetQuestionBank  = () => {
 
 
  const [data,setdata] = useState([])
-
+ //const [search,setSearch] =useState('');
 const [course_id ,setcourseid] = useState("");
 const [model ,setmodel] = useState("");
 const [file ,setfile] = useState(null);
@@ -109,200 +111,118 @@ const GetCourses = async ()=>{
  return (
 
 
-  <div className="trans-content">
-  <MDBContainer>
-    <form
-    // style={{
-    //   margin:"auto",
-    //   marginRight:"1000px",
-    //   padding:"15px",
-    //   maxWidth:"500px",
-    //   alignContent:"center",
-
-    // }}
-    className='d-flex input-group w-auto' onSubmit={store}>
+<section>
 
 
-        </form>
-
-
-         <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={{
-          content: {
-            width: '70%',
-            height : '60%',
-            position: 'absolute',
-            top: '50%',
-            left: '40%',
-            transform: 'translate(-50%, -50%)'
-
-          }}}>
-      <AiIcons.AiOutlineClose onClick={closeModal} style={{  width: '5%' , height : '5%' }} />
-        <div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
-
-
-                <div lang="ar" className="row">
-                      
-
-
-                        <div className="form-group mt-2">
-                                       <label>الدورة </label>
-                                       <select  className='form-control'  onChange={(e)=>setcourseid(e.target.value)}>
-                                                   <option value="">--Please select an option--</option>
-                                                   {Courses.map(option => (
-                                                     <option key={option.id} value={option.id} >{option.name}</option>
-                                                   ))}
-                                           </select>
-  
-                              </div>
-
-                             
-                        <div className="form-group mt-2">
-                                       <label>النموذج </label>
-
-                                       <input
-           value={model}
+<div class="container">  
+      <div class="row mt-3">
+       <div class="col-sm-4">
+          <div className="box p-3 mb-3 mt-5" style={{border:"1px solid #d0d0d0"}}>
+            <form onSubmit={store}> 
+            
+                <div class="form-group">
+                <label>الدورة </label>
+                <select className='form-control'   onChange={(e)=>setcourseid(e.target.value)}>
+         <option value="">الرجاء اختيار الدورة</option>
+         {Courses.map(option => (
+             <option key={option.id} value={option.id} >{option.name}</option>
+                        ))}
+            </select>
+                </div>
+                  
+                <div class="form-group">
+                <label>النموذج </label>
+                <input
+           value={model} className='form-control'
            onChange = {(e)=> setmodel(e.target.value)}
-           type="text"
-           className='form-control' />
-                               </div>
-                     
-
-
-                        <div className='mb-3'>
-           <label className='form-lable'> الأسئلة</label>
-           <input className='form-control'  type="file" onChange={(event) => setfile(event.target.files[0])} />
-
-       </div>
-
-                              <div className="form-group mt-2">
-                                       <label>الفرع </label>
-                                       <select className='form-control'  onChange={(e)=>setbranchid(e.target.value)}>
-                                                   <option value="">--Please select an option--</option>
-                                                   {Branches.map(option => (
-                                                     <option key={option.id} value={option.id} >{option.name}</option>
-                                                   ))}
-                                           </select>
-  
-                              </div>
-                        </div>
-                      
-
-                     
-
-
-
-                      
-
+          
+            />          
+      </div>
+     
+                <div class="form-group">
+                <label>ملف الأسئلة </label>
+                           <input className='form-control'  type="file" onChange={(event) => setfile(event.target.files[0])} />
 
                 </div>
-                    <button type="button" onClick={store} className="btn btn-primary mt-4">حفظ</button>
+               
+                <div class="form-group">
+                <label>الفرع </label>
+                <select className='form-control'  onChange={(e)=>setbranchid(e.target.value)}>
+                                                    <option value="">الرجاء اختيار الفرع</option>
+                                                   {Branches.map(option => (
+                                                     <option key={option.id} value={option.id} >{option.name}</option>
+                                                    ))}
+                                            </select>                </div>
+ 
+              
+                <button type="submit" class="btn btn-primary btn-block mt-4"> حفظ</button>
+             </form>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <h5 class="text-center  ml-4 mt-4  mb-5"> جميع السجلات</h5>
+        <div class="input-group mb-4 mt-3">
+          <div class="form-outline">
+           <input type="text" id="form1" class="form-control" placeholder="Search Employee Here" style={{backgroundColor:"#ececec",width:100 }}/>
+        </div>
+        <button type="button"  style={{width:35 ,height:35}}  class="btn btn-success">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+        </div>  
+        <table class="table table-hover  table-striped table-bordered ml-4 ">
+            <thead>
+            <tr>
+                <th>الفرع</th>
+                <th>ملف الاسئلة</th>
+                <th>النموذج</th>
+                <th>الدورة</th>
+             
+            </tr>
+            </thead>
+            <tbody>
+     
+            {data.map((data)=>
+                <tr>
+                <td>{data.Branches}</td>
+                <td>{data.file}</td>
+                <td>{data.model}</td>
+                <td>{data.course_id}</td>
+               
 
 
-       
-      </ReactModal>
-
-<div lang="ar" style={{marginTop:"100px" ,   textAlign: 'right'}}>
-
-
-          <MDBRow>
-
-            <MDBCol size="10">
-
-               <h2>بنك الأسئلة </h2>
-               <AiIcons.AiOutlinePlus onClick={openModal} style={{ background :"green" }}/>
-               {/* <div className="col-md-4"><button onClick={openModal}>أضف فرع جديد</button></div> */}
-
-              <MDBTable>
-                <MDBTableHead dark>
-                  <tr>
-
-                    <th scope='col-md-2' size="2" ></th>
-                    <th scope='col'>الفرع  </th>
-                    <th scope='col'>نموذج الأسئلة</th>
-                    <th scope='col'>النموذج</th>
-                    <th scope='col'>الدورة </th>
-                    
-                    
-                  
-                  
-                              
-
-
-                               
-                           
-
-                  </tr>
-
-
-                </MDBTableHead>
-
-                {
-
-                  data.length === 0 ? (
-                    <MDBTableBody className='align-center mb-0'>
-                    <tr>
-                       <td colSpan={8} className='text-center mb-0'>
-                      No Data
-                       </td>
-                    </tr>
-                    </MDBTableBody>
-                  ):(
-                    data.map((data)=>(
-                      <MDBTableBody >
-                        <tr>
-
-                        {/* <td><button onClick={() => Delete(data.id)} className='btn btn-danger mt-4' >Delete</button></td> */}
-
-
-                          <td>
-                             <AiIcons.AiFillDelete onClick={() => Delete(data.id)} style={{ color: 'red' , width : '10%' , height: '10%' ,alignItems:"center" }} />
-
-                             {/* <Link to={`/Branches/edit/${data.id}`} >
-                              <AiIcons.AiFillEdit style={{ color: 'green' , width : '10%' , height: '10%' ,alignItems:"center" }}/ >
-                             </Link> */}
-
-                          </td>
-                          <td>{data.branch_id}</td>
-                          
-                       
-                          <td>{data.file}</td>
-                  
-                          <td>{data.model}</td>
-
-                                      <td>{data.course_id}</td>    
-                                       
-                                       
-
-
-
-                        </tr>
-
-                      </MDBTableBody>
-
-
-                        ))
-                      )
-                    }
-                  </MDBTable>
-
-            </MDBCol>
-            <MDBCol size="4">
-
-            </MDBCol>
-              </MDBRow>
-
-</div>
-
-
-
-
-
-
-
-              </MDBContainer>
-   </div>
- )
+                <td>
+                      <a  className="text-danger mr-2"
+                        onClick={() => {
+                          const confirmBox = window.confirm(
+                            "Do you really want to delete "+ data.id
+                          )
+                          if (confirmBox === true) {
+                            Delete(data.id)
+                          }
+                        }}> <i class="far fa-trash-alt" style={{fontSize:"18px",marginRight:"5px"}}></i> </a>
+                   
+                    <Link class=" mr-2" to={`/EditEmployee/editID/${data.id}`}>
+                       <i class="fa fa-edit" aria-hidden="true"></i> 
+                    </Link>
+                </td>
+                </tr>
+                )} 
+            </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+   </section>
+  )
 }
+ 
+
+             
+   
+  
+   
+   
+ 
 
 
 

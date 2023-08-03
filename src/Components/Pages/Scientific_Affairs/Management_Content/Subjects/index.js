@@ -13,7 +13,7 @@
 
   //const endpoint = 'http://localhost:8000/api/branch/store'
 
-export const GetSubjects= () => {
+export default function GetSubjects (){
 
   const [data,setdata] = useState([])
 
